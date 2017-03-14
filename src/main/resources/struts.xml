@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+<struts>
+
+ 	<constant name="struts.devMode" value="true" />
+ 	<constant name="struts.custom.i18n.resources" value="global" />
+ 	
+	<package name="default" namespace="/" extends="struts-default">
+		
+		<action name="fileUploadAction" class="com.mkyong.common.action.FileUploadAction" method="display">
+			<result name="none">pages/fileupload.jsp</result>
+		</action>
+		
+		<action name="resultAction" class="com.mkyong.common.action.FileUploadAction">
+
+			<interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+       			<param name="allowedTypes">text/plain</param>
+       			<param name="maximumSize">10240</param>
+  			</interceptor-ref> 
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+    
+			<result name="success">pages/result.jsp</result>
+			<result name="input">pages/fileupload.jsp</result>
+			
+		</action>
+	</package>
+	
+</struts>
