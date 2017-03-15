@@ -23,7 +23,7 @@
  */
 package com.github.jrrdev;
 
-import org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter;
+import org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
